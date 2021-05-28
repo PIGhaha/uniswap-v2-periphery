@@ -9,10 +9,17 @@ import './libraries/SafeMath.sol';
 import './interfaces/IERC20.sol';
 import './interfaces/IWETH.sol';
 
-contract UniswapV2Router02 is IUniswapV2Router02 {
-    using SafeMath for uint;
 
+//合约定义：本合约实现了IUinswapV2Router02接口
+contract UniswapV2Router02 is IUniswapV2Router02 {
+    //在uint使用SafaMath，防止上下溢出
+    using SafeMath for uint;
+    
+    //immutable:不可变的。constant在编译时即确定，immutable除了在定义的时候初始化外，还可以在构造器中初始化
+    //并且在构造器中只能初始化无法读取。
     address public immutable override factory;
+    
+    //override: 重写了一个父函数，
     address public immutable override WETH;
 
     modifier ensure(uint deadline) {
